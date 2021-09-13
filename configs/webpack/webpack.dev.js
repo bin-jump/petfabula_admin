@@ -4,14 +4,17 @@ const baseConfig = require('./webpack.base');
 
 const devConfig = {
   mode: 'development',
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     hot: true,
-    devMiddleware: {
-      stats: 'errors-only',
-    },
-    static: {
-      directory: './dist',
-    },
+    // devMiddleware: {
+    //   stats: 'errors-only',
+    // },
+    // static: {
+    //   directory: './dist',
+    // },
+    contentBase: './dist',
+    stats: 'errors-only',
     port: 3000,
     // proxy: {
     //   '/api': 'http://localhost:8080',

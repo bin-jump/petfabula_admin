@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
+import { loginRootReducer } from '../features/login/redux';
 
-const appReducer = combineReducers({});
+const appReducer = combineReducers({
+  login: loginRootReducer,
+});
 
 const rootReducer = (state: any, action: any) => {
   //   if (action.type === LogoutActionType.SUCCESS) {

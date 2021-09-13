@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { fork, all, spawn } from 'redux-saga/effects';
 import rootReducer from './rootReducer';
+import { loginRootSaga } from '../features/login/redux';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -14,7 +15,7 @@ const store = createStore(
 );
 
 function* rootSaga() {
-  yield all([]);
+  yield all([fork(loginRootSaga)]);
 }
 
 sagaMiddleware.run(rootSaga);
