@@ -13,6 +13,20 @@ const watchGetCurrentUser = createSagaWatcher({
   watchType: 'LATEST',
 });
 
+const watchLogin = createSagaWatcher({
+  url: `/api/identity/signin-email-password`,
+  method: 'POST',
+  asyncAction: PasswordLoginUserActionType,
+  watchType: 'EVERY',
+});
+
+const watchLogout = createSagaWatcher({
+  url: `/api/identity/logout`,
+  method: 'POST',
+  asyncAction: LogoutActionType,
+  watchType: 'EVERY',
+});
+
 export function* loginRootSaga() {
-  yield all([fork(watchGetCurrentUser)]);
+  yield all([fork(watchGetCurrentUser), fork(watchLogin), fork(watchLogout)]);
 }

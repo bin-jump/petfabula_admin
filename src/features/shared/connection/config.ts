@@ -2,7 +2,7 @@ type Locale = 'en' | 'ja';
 
 class ConnectionConfig {
   locale: Locale = 'ja';
-  baseUrl = 'http://192.168.0.199:80';
+  baseUrl = 'http://127.0.0.1:80';
 
   TIME_OUT = 15 * 1000;
 

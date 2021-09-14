@@ -4,10 +4,17 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { fork, all, spawn } from 'redux-saga/effects';
 import rootReducer from './rootReducer';
 import { loginRootSaga } from '../features/login/redux';
+import { manageRootSaga } from '../features/manage/redux';
+import { logHandleMiddleware } from './logHandleMiddleware';
+import { toastHandleMiddleware } from './toastHandleMiddleware';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [sagaMiddleware];
+const middlewares = [
+  logHandleMiddleware,
+  toastHandleMiddleware,
+  sagaMiddleware,
+];
 
 const store = createStore(
   rootReducer,
@@ -15,7 +22,7 @@ const store = createStore(
 );
 
 function* rootSaga() {
-  yield all([fork(loginRootSaga)]);
+  yield all([fork(loginRootSaga), fork(manageRootSaga)]);
 }
 
 sagaMiddleware.run(rootSaga);

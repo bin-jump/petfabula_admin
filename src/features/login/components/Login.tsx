@@ -3,10 +3,13 @@ import { usePasswordLogin, EmailPasswordLoginForm } from '../redux';
 import { Button, Typography } from 'antd';
 import { Field, Formik, Form } from 'formik';
 import { validEmailPasswordLoginFormSchema } from '../yupSchemas/loginSchema';
-import { BlankInput } from '../../shared';
+import { BlankInput, resolveResponseFormError } from '../../shared';
 
 const Login = () => {
-  const handleSubmit = (data: EmailPasswordLoginForm) => {};
+  const { login } = usePasswordLogin();
+  const handleSubmit = (data: EmailPasswordLoginForm) => {
+    login(data);
+  };
   const initialValues = {
     email: '',
     password: '',
@@ -23,7 +26,7 @@ const Login = () => {
           textAlign: 'center',
         }}
       >
-        <Typography>LOGIN1</Typography>
+        <Typography>LOGIN</Typography>
         <Formik
           onSubmit={handleSubmit}
           validationSchema={validEmailPasswordLoginFormSchema}
@@ -49,10 +52,11 @@ const LoginFormContent: React.FC<{
   errors: any;
   setErrors: (errors: any) => void;
   isValid: boolean;
-}> = ({ isSubmitting, errors, setErrors, setSubmitting, isValid }) => {
+}> = ({ setErrors, setSubmitting, isValid }) => {
   const { error, pending } = usePasswordLogin();
+
   React.useEffect(() => {
-    setErrors(error || {});
+    setErrors(resolveResponseFormError(error));
   }, [error]);
 
   React.useEffect(() => {
@@ -76,7 +80,7 @@ const LoginFormContent: React.FC<{
           shape="round"
           size="large"
           disabled={!isValid}
-          loading={isSubmitting}
+          loading={pending}
           htmlType="submit"
         >
           Login

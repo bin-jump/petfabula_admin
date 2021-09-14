@@ -32,6 +32,13 @@ export interface AsyncCursorPageListBase<T> extends PendableEntityBase {
   initializing: boolean;
 }
 
+export interface AsyncOffsetPageListBase<T> extends PendableEntityBase {
+  data: Array<T>;
+  total: number;
+  page: number;
+  size: number;
+}
+
 export interface ReduxAsyncAction {
   BEGIN: string;
   SUCCESS: string;

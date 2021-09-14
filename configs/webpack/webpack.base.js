@@ -5,6 +5,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
+  output: {
+    publicPath: '/',
+  },
   context: path.resolve(__dirname, '../..'),
   devtool: false,
   entry: [

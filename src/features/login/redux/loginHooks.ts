@@ -11,9 +11,9 @@ import { ActionBase } from '../../shared';
 
 export const useCurrentUser = () => {
   const dispatch = useDispatch();
-  const { sendResult, pending, error } = useSelector(
+  const { currentUser, pending, error } = useSelector(
     (state: AppState) => ({
-      sendResult: state.login.currentUser.data,
+      currentUser: state.login.currentUser.data,
       pending: state.login.currentUser.pending,
       error: state.login.currentUser.error,
     }),
@@ -26,7 +26,7 @@ export const useCurrentUser = () => {
 
   return {
     getCurrentUser: boundAction,
-    sendResult,
+    currentUser,
     pending,
     error,
   };
@@ -45,7 +45,10 @@ export const usePasswordLogin = () => {
 
   const boundAction = useCallback(
     (data: EmailPasswordLoginForm) => {
-      dispatch({ type: PasswordLoginUserActionType.BEGIN, payload: data });
+      const d = new FormData();
+      d.append('email', data.email);
+      d.append('password', data.password);
+      dispatch({ type: PasswordLoginUserActionType.BEGIN, payload: d });
     },
     [dispatch],
   );
@@ -145,6 +148,10 @@ export const loginReducer = {
         ...state.passwordLoginResult,
         data: action.payload,
         pending: false,
+      },
+      currentUser: {
+        ...state.currentUser,
+        data: action.payload,
       },
     };
   },

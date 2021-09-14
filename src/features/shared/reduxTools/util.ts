@@ -5,6 +5,7 @@ import {
   AsyncActionError,
   ActionBase,
   AsyncCursorPageListBase,
+  AsyncOffsetPageListBase,
 } from './types';
 
 export function createAsyncActionType(prefix: string): ReduxAsyncAction {
@@ -86,6 +87,16 @@ export function createSagaWatcher({
       const delimiter = requestUrl.indexOf('?') >= 0 ? '&' : '?';
       requestUrl = `${requestUrl}${delimiter}cursor=${beginAction.payload.cursor}`;
     }
+
+    // add offset page
+    if (
+      typeof beginAction.payload?.page !== 'undefined' &&
+      beginAction.payload?.size
+    ) {
+      const delimiter = requestUrl.indexOf('?') >= 0 ? '&' : '?';
+      requestUrl = `${requestUrl}${delimiter}page=${beginAction.payload.page}&size=${beginAction.payload.size}`;
+    }
+
     const requestData = createRequestPayload
       ? createRequestPayload(beginAction.payload)
       : beginAction.payload;
@@ -162,6 +173,25 @@ export const fillCursorResponseData = (
     hasMore: successAction.payload.hasMore,
     nextCursor: successAction.payload.nextCursor,
     initializing: false,
+    pending: false,
+  };
+};
+
+export const fillOffsetResponseData = (
+  state: AsyncOffsetPageListBase<any>,
+  successAction: ActionBase,
+  resultCallback?: (arr: any) => any,
+): AsyncOffsetPageListBase<any> => {
+  let arr = successAction.payload.result;
+  if (resultCallback) {
+    arr = resultCallback(arr);
+  }
+  return {
+    ...state,
+    data: successAction.extra?.cursor ? [...state.data, ...arr] : arr,
+    total: successAction.payload.total,
+    page: successAction.payload.page,
+    size: successAction.payload.size,
     pending: false,
   };
 };
