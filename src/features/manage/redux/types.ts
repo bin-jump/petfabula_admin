@@ -1,4 +1,8 @@
-import { AsyncDataBase, AsyncOffsetPageListBase } from '../../shared';
+import {
+  AsyncDataBase,
+  AsyncOffsetPageListBase,
+  AsyncListBase,
+} from '../../shared';
 
 export type DisplayImage = {
   id: number;
@@ -88,6 +92,38 @@ export interface Document {
   content: string;
 }
 
+export interface PostTopic {
+  id: number;
+  title: string;
+  topicCategoryId: number;
+  topicCategoryTitle: string;
+}
+
+export interface PostTopicCategory {
+  id: number;
+  title: string;
+  topics: PostTopic[];
+}
+
+export interface PostTopicForm {
+  title: string;
+  topicCategoryId: number;
+}
+
+export interface PostTopicCategoryForm {
+  title: string;
+}
+
+export interface UpdatePostTopicForm {
+  id: number;
+  title: string;
+}
+
+export interface UpdatePostTopicCategoryForm {
+  id: number;
+  title: string;
+}
+
 export interface ManageState {
   reports: AsyncOffsetPageListBase<Report>;
   reportDetail: AsyncDataBase<ReportDetail>;
@@ -106,4 +142,12 @@ export interface ManageState {
   userAgreement: AsyncDataBase<Document>;
   privacyAgreement: AsyncDataBase<Document>;
   updateDocument: AsyncDataBase<Document>;
+
+  topicCategories: AsyncListBase<PostTopicCategory>;
+  createTopic: AsyncDataBase<PostTopic>;
+  createTopicCategory: AsyncDataBase<PostTopicCategory>;
+  updateTopic: AsyncDataBase<PostTopic>;
+  updateTopicCategory: AsyncDataBase<PostTopicCategory>;
+  removeTopic: AsyncDataBase<PostTopic>;
+  removeTopicCategory: AsyncDataBase<PostTopicCategory>;
 }

@@ -4,6 +4,7 @@ import { reportReducer } from './reportHooks';
 import { feedbackReducer } from './feedbackHooks';
 import { systemNotificationReducer } from './systemMessageHooks';
 import { documentReducer } from './documentHooks';
+import { postTopicReducer } from './topicHooks';
 
 const initialStat: ManageState = {
   reports: {
@@ -84,6 +85,42 @@ const initialStat: ManageState = {
     pending: false,
     error: null,
   },
+
+  topicCategories: {
+    data: [],
+    pending: false,
+    error: null,
+  },
+  createTopicCategory: {
+    data: null,
+    pending: false,
+    error: null,
+  },
+  createTopic: {
+    data: null,
+    pending: false,
+    error: null,
+  },
+  updateTopic: {
+    data: null,
+    pending: false,
+    error: null,
+  },
+  updateTopicCategory: {
+    data: null,
+    pending: false,
+    error: null,
+  },
+  removeTopic: {
+    data: null,
+    pending: false,
+    error: null,
+  },
+  removeTopicCategory: {
+    data: null,
+    pending: false,
+    error: null,
+  },
 };
 
 export const manageRootReducer = createReducer<ManageState, ActionBase>(
@@ -93,5 +130,6 @@ export const manageRootReducer = createReducer<ManageState, ActionBase>(
     ...feedbackReducer,
     ...systemNotificationReducer,
     ...documentReducer,
+    ...postTopicReducer,
   },
 );

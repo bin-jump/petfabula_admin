@@ -7,6 +7,7 @@ import {
   SoundOutlined,
   SolutionOutlined,
   EyeOutlined,
+  NumberOutlined,
 } from '@ant-design/icons';
 import { useCurrentUser, useLogout } from '../login/redux';
 import Reports from './components/Reports';
@@ -15,6 +16,7 @@ import SystemNotifications from './components/SystemNotifications';
 import ReportDetial from './components/ReportDetial';
 import UserAgreement from './components/UserAgreement';
 import PrivacyAgreement from './components/PrivacyAgreement';
+import PostTopics from './components/PostTopics';
 
 const { Header, Content, Sider } = Layout;
 
@@ -24,6 +26,7 @@ const topPathes = new Set([
   '/manage/system-notifications',
   '/manage/user-agreement',
   '/manage/privacy-agreement',
+  '/manage/post-topics',
 ]);
 
 const Manage = () => {
@@ -80,6 +83,9 @@ const Manage = () => {
                 >
                   Privacy Agreement
                 </Menu.Item>
+                <Menu.Item key="/manage/post-topics" icon={<NumberOutlined />}>
+                  Topics
+                </Menu.Item>
               </Menu>
             </Sider>
 
@@ -134,6 +140,11 @@ const Manage = () => {
                     exact={true}
                     path="/manage/privacy-agreement"
                     component={PrivacyAgreement}
+                  />
+                  <Route
+                    exact={true}
+                    path="/manage/post-topics"
+                    component={PostTopics}
                   />
                 </Switch>
               </div>

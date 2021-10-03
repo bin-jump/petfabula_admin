@@ -14,6 +14,15 @@ import {
   LoadUserAgreementActionType,
   LoadPrivacyAgreementActionType,
   UpdateDocumentActionType,
+
+  // topic
+  LoadTopicCategoriesActionType,
+  CreateTopicActionType,
+  CreateTopicCategoryActionType,
+  UpdateTopicActionType,
+  UpdateTopicCategoryActionType,
+  RemoveTopicActionType,
+  RemoveTopicCategoryActionType,
 } from './actionTypes';
 
 const watchLoadReports = createSagaWatcher({
@@ -117,6 +126,61 @@ const watchUpdateDocument = createSagaWatcher({
   watchType: 'EVERY',
 });
 
+const watchLoadTopicCategories = createSagaWatcher({
+  url: `/api/admin/topic-categories`,
+  method: 'GET',
+  asyncAction: LoadTopicCategoriesActionType,
+  watchType: 'LATEST',
+});
+
+const watchCreateTopicCategory = createSagaWatcher({
+  url: `/api/admin/topic-categories`,
+  method: 'POST',
+  asyncAction: CreateTopicCategoryActionType,
+  watchType: 'EVERY',
+});
+
+const watchCreateTopic = createSagaWatcher({
+  url: `/api/admin/topics`,
+  method: 'POST',
+  asyncAction: CreateTopicActionType,
+  watchType: 'EVERY',
+});
+
+const watchUpdateTopicCategories = createSagaWatcher({
+  url: `/api/admin/topic-categories`,
+  method: 'PUT',
+  asyncAction: UpdateTopicCategoryActionType,
+  watchType: 'EVERY',
+});
+
+const watchUpdateTopic = createSagaWatcher({
+  url: `/api/admin/topics`,
+  method: 'PUT',
+  asyncAction: UpdateTopicActionType,
+  watchType: 'EVERY',
+});
+
+const watchRemoveTopic = createSagaWatcher({
+  createUrl: (payload) => {
+    let url = `/api/admin/topics/${payload.topicId}`;
+    return url;
+  },
+  method: 'DELETE',
+  asyncAction: RemoveTopicActionType,
+  watchType: 'EVERY',
+});
+
+const watchRemoveTopicCategory = createSagaWatcher({
+  createUrl: (payload) => {
+    let url = `/api/admin/topic-categories/${payload.topicCategoryId}`;
+    return url;
+  },
+  method: 'DELETE',
+  asyncAction: RemoveTopicCategoryActionType,
+  watchType: 'EVERY',
+});
+
 export function* manageRootSaga() {
   yield all([
     fork(watchLoadReports),
@@ -135,5 +199,13 @@ export function* manageRootSaga() {
     fork(watchLoadUserAgreement),
     fork(watchLoadUPrivacyAgreement),
     fork(watchUpdateDocument),
+
+    fork(watchLoadTopicCategories),
+    fork(watchCreateTopicCategory),
+    fork(watchCreateTopic),
+    fork(watchUpdateTopicCategories),
+    fork(watchUpdateTopic),
+    fork(watchRemoveTopicCategory),
+    fork(watchRemoveTopic),
   ]);
 }
