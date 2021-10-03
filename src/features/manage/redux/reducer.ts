@@ -5,6 +5,7 @@ import { feedbackReducer } from './feedbackHooks';
 import { systemNotificationReducer } from './systemMessageHooks';
 import { documentReducer } from './documentHooks';
 import { postTopicReducer } from './topicHooks';
+import { petBreedReducer } from './petBreedHooks';
 
 const initialStat: ManageState = {
   reports: {
@@ -121,6 +122,22 @@ const initialStat: ManageState = {
     pending: false,
     error: null,
   },
+
+  petCategories: {
+    data: [],
+    pending: false,
+    error: null,
+  },
+  createPetBreed: {
+    data: null,
+    pending: false,
+    error: null,
+  },
+  updatePetBreed: {
+    data: null,
+    pending: false,
+    error: null,
+  },
 };
 
 export const manageRootReducer = createReducer<ManageState, ActionBase>(
@@ -131,5 +148,6 @@ export const manageRootReducer = createReducer<ManageState, ActionBase>(
     ...systemNotificationReducer,
     ...documentReducer,
     ...postTopicReducer,
+    ...petBreedReducer,
   },
 );

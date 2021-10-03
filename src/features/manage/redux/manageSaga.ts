@@ -23,6 +23,11 @@ import {
   UpdateTopicCategoryActionType,
   RemoveTopicActionType,
   RemoveTopicCategoryActionType,
+
+  //pet breed
+  LoadPetCategoryActionType,
+  CreatePetBreedActionType,
+  UpdatePetBreedActionType,
 } from './actionTypes';
 
 const watchLoadReports = createSagaWatcher({
@@ -126,6 +131,7 @@ const watchUpdateDocument = createSagaWatcher({
   watchType: 'EVERY',
 });
 
+// topic
 const watchLoadTopicCategories = createSagaWatcher({
   url: `/api/admin/topic-categories`,
   method: 'GET',
@@ -181,6 +187,26 @@ const watchRemoveTopicCategory = createSagaWatcher({
   watchType: 'EVERY',
 });
 
+// pet breed
+const watchLoadPetCategories = createSagaWatcher({
+  url: `/api/admin/pet-categories`,
+  method: 'GET',
+  asyncAction: LoadPetCategoryActionType,
+  watchType: 'LATEST',
+});
+const watchCreatePetBreed = createSagaWatcher({
+  url: `/api/admin/pet-breeds`,
+  method: 'POST',
+  asyncAction: CreatePetBreedActionType,
+  watchType: 'EVERY',
+});
+const watchUpdatePetBreed = createSagaWatcher({
+  url: `/api/admin/pet-breeds`,
+  method: 'PUT',
+  asyncAction: UpdatePetBreedActionType,
+  watchType: 'EVERY',
+});
+
 export function* manageRootSaga() {
   yield all([
     fork(watchLoadReports),
@@ -207,5 +233,9 @@ export function* manageRootSaga() {
     fork(watchUpdateTopic),
     fork(watchRemoveTopicCategory),
     fork(watchRemoveTopic),
+
+    fork(watchLoadPetCategories),
+    fork(watchCreatePetBreed),
+    fork(watchUpdatePetBreed),
   ]);
 }

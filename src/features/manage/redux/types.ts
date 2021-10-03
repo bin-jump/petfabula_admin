@@ -124,6 +124,30 @@ export interface UpdatePostTopicCategoryForm {
   title: string;
 }
 
+export interface PetBreed {
+  id: number;
+  categoryId: number;
+  category: string;
+  name: string;
+}
+
+export interface PetCategory {
+  id: number;
+  name: string;
+  petBreeds: PetBreed[];
+}
+
+export interface PetBreedForm {
+  categoryId: number;
+  name: string;
+}
+
+export interface UpdatePetBreedForm {
+  id: number;
+  categoryId: number;
+  name: string;
+}
+
 export interface ManageState {
   reports: AsyncOffsetPageListBase<Report>;
   reportDetail: AsyncDataBase<ReportDetail>;
@@ -150,4 +174,8 @@ export interface ManageState {
   updateTopicCategory: AsyncDataBase<PostTopicCategory>;
   removeTopic: AsyncDataBase<PostTopic>;
   removeTopicCategory: AsyncDataBase<PostTopicCategory>;
+
+  petCategories: AsyncListBase<PetCategory>;
+  createPetBreed: AsyncDataBase<PetBreed>;
+  updatePetBreed: AsyncDataBase<PetBreed>;
 }

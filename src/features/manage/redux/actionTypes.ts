@@ -64,3 +64,13 @@ export const RemoveTopicActionType = createAsyncActionType(
 export const RemoveTopicCategoryActionType = createAsyncActionType(
   'MANAGE_REMOVE_TOPIC_CATEGORY',
 );
+
+export const LoadPetCategoryActionType = createAsyncActionType(
+  'MANAGE_LOAD_PET_CATEGORIES',
+);
+export const CreatePetBreedActionType = createAsyncActionType(
+  'MANAGE_CREATE_PET_BREED',
+);
+export const UpdatePetBreedActionType = createAsyncActionType(
+  'MANAGE_UPDATE_PET_BREED',
+);
