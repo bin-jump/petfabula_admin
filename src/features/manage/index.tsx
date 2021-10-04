@@ -9,6 +9,7 @@ import {
   EyeOutlined,
   NumberOutlined,
   TagsOutlined,
+  EnvironmentOutlined,
 } from '@ant-design/icons';
 import { useCurrentUser, useLogout } from '../login/redux';
 import Reports from './components/Reports';
@@ -19,6 +20,7 @@ import UserAgreement from './components/UserAgreement';
 import PrivacyAgreement from './components/PrivacyAgreement';
 import PostTopics from './components/PostTopics';
 import PetBreeds from './components/PetBreeds';
+import Cities from './components/Cities';
 
 const { Header, Content, Sider } = Layout;
 
@@ -30,6 +32,7 @@ const topPathes = new Set([
   '/manage/privacy-agreement',
   '/manage/post-topics',
   '/manage/pet-breeds',
+  '/manage/cities',
 ]);
 
 const Manage = () => {
@@ -91,6 +94,9 @@ const Manage = () => {
                 </Menu.Item>
                 <Menu.Item key="/manage/pet-breeds" icon={<TagsOutlined />}>
                   Breeds
+                </Menu.Item>
+                <Menu.Item key="/manage/cities" icon={<EnvironmentOutlined />}>
+                  City
                 </Menu.Item>
               </Menu>
             </Sider>
@@ -156,6 +162,11 @@ const Manage = () => {
                     exact={true}
                     path="/manage/pet-breeds"
                     component={PetBreeds}
+                  />
+                  <Route
+                    exact={true}
+                    path="/manage/cities"
+                    component={Cities}
                   />
                 </Switch>
               </div>

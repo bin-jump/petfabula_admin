@@ -6,6 +6,7 @@ import { systemNotificationReducer } from './systemMessageHooks';
 import { documentReducer } from './documentHooks';
 import { postTopicReducer } from './topicHooks';
 import { petBreedReducer } from './petBreedHooks';
+import { cityReducer } from './cityHooks';
 
 const initialStat: ManageState = {
   reports: {
@@ -138,6 +139,22 @@ const initialStat: ManageState = {
     pending: false,
     error: null,
   },
+
+  prefectures: {
+    data: [],
+    pending: false,
+    error: null,
+  },
+  createCity: {
+    data: null,
+    pending: false,
+    error: null,
+  },
+  updateCity: {
+    data: null,
+    pending: false,
+    error: null,
+  },
 };
 
 export const manageRootReducer = createReducer<ManageState, ActionBase>(
@@ -149,5 +166,6 @@ export const manageRootReducer = createReducer<ManageState, ActionBase>(
     ...documentReducer,
     ...postTopicReducer,
     ...petBreedReducer,
+    ...cityReducer,
   },
 );

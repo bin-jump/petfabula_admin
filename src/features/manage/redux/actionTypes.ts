@@ -74,3 +74,9 @@ export const CreatePetBreedActionType = createAsyncActionType(
 export const UpdatePetBreedActionType = createAsyncActionType(
   'MANAGE_UPDATE_PET_BREED',
 );
+
+export const LoadPrefecturesActionType = createAsyncActionType(
+  'MANAGE_LOAD_PREFECTURES',
+);
+export const CreateCityActionType = createAsyncActionType('MANAGE_CREATE_CITY');
+export const UpdateCityActionType = createAsyncActionType('MANAGE_UPDATE_CITY');

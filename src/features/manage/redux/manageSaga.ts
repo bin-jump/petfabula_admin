@@ -28,6 +28,11 @@ import {
   LoadPetCategoryActionType,
   CreatePetBreedActionType,
   UpdatePetBreedActionType,
+
+  // city
+  LoadPrefecturesActionType,
+  CreateCityActionType,
+  UpdateCityActionType,
 } from './actionTypes';
 
 const watchLoadReports = createSagaWatcher({
@@ -207,6 +212,26 @@ const watchUpdatePetBreed = createSagaWatcher({
   watchType: 'EVERY',
 });
 
+// city
+const watchLoadPrefectures = createSagaWatcher({
+  url: `/api/admin/prefectures`,
+  method: 'GET',
+  asyncAction: LoadPrefecturesActionType,
+  watchType: 'LATEST',
+});
+const watchCreateCity = createSagaWatcher({
+  url: `/api/admin/cities`,
+  method: 'POST',
+  asyncAction: CreateCityActionType,
+  watchType: 'EVERY',
+});
+const watchUpdateCity = createSagaWatcher({
+  url: `/api/admin/cities`,
+  method: 'PUT',
+  asyncAction: UpdateCityActionType,
+  watchType: 'EVERY',
+});
+
 export function* manageRootSaga() {
   yield all([
     fork(watchLoadReports),
@@ -237,5 +262,9 @@ export function* manageRootSaga() {
     fork(watchLoadPetCategories),
     fork(watchCreatePetBreed),
     fork(watchUpdatePetBreed),
+
+    fork(watchLoadPrefectures),
+    fork(watchCreateCity),
+    fork(watchUpdateCity),
   ]);
 }

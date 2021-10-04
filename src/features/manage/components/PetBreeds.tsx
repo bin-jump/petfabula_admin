@@ -230,6 +230,8 @@ const PetBreeds = () => {
   return (
     <div style={{ padding: 20 }}>
       <CreateUpdateBreed handleCancel={handleBreedClose} content={breed} />
+
+      <div>{`Total: ${petCategories.length}`}</div>
       <Table
         pagination={{ pageSize: 10000 }}
         rowKey={(item) => item.id}
@@ -238,6 +240,7 @@ const PetBreeds = () => {
         loading={pending}
       />
 
+      <div>{`Total: ${petBreeds.length}`}</div>
       <Table
         pagination={{ pageSize: 10000 }}
         rowKey={(item) => item.id}

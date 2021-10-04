@@ -373,6 +373,7 @@ const PostTopics = () => {
         pending={removeTopicCategoryPending || removeTopicPending}
       />
 
+      <div>{`Total: ${topicCategories.length}`}</div>
       <Button
         onClick={() => {
           setCategory({ title: '' });
@@ -388,6 +389,7 @@ const PostTopics = () => {
         loading={pending}
       />
 
+      <div>{`Total: ${topics.length}`}</div>
       <Table
         pagination={{ pageSize: 10000 }}
         rowKey={(item) => item.id}

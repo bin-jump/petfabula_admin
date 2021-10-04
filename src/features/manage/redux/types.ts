@@ -148,6 +148,30 @@ export interface UpdatePetBreedForm {
   name: string;
 }
 
+//city
+export interface City {
+  id: number;
+  name: string;
+  prefectureName: string;
+  prefectureId: number;
+}
+
+export interface Prefecture {
+  id: number;
+  name: string;
+  cities: City[];
+}
+
+export interface CityForm {
+  prefectureId: number;
+  name: string;
+}
+
+export interface UpdateCityForm {
+  id: number;
+  name: string;
+}
+
 export interface ManageState {
   reports: AsyncOffsetPageListBase<Report>;
   reportDetail: AsyncDataBase<ReportDetail>;
@@ -178,4 +202,8 @@ export interface ManageState {
   petCategories: AsyncListBase<PetCategory>;
   createPetBreed: AsyncDataBase<PetBreed>;
   updatePetBreed: AsyncDataBase<PetBreed>;
+
+  prefectures: AsyncListBase<Prefecture>;
+  createCity: AsyncDataBase<City>;
+  updateCity: AsyncDataBase<City>;
 }
