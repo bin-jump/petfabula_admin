@@ -7,6 +7,7 @@ const devConfig = {
   plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     hot: true,
+    hotOnly: true,
     // devMiddleware: {
     //   stats: 'errors-only',
     // },

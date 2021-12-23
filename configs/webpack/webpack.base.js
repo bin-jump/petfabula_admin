@@ -59,9 +59,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html.ejs',
     }),
-    new webpack.ProvidePlugin({
-      process: 'process/browser',
-    }),
+    // new webpack.ProvidePlugin({
+    //   process: 'process/browser',
+    // }),
   ],
   cache: true,
 };
