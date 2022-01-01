@@ -8,3 +8,4 @@ export * from './documentHooks';
 export * from './topicHooks';
 export * from './petBreedHooks';
 export * from './cityHooks';
+export * from './userHooks';

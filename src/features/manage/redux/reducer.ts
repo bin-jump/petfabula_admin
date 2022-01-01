@@ -7,6 +7,7 @@ import { documentReducer } from './documentHooks';
 import { postTopicReducer } from './topicHooks';
 import { petBreedReducer } from './petBreedHooks';
 import { cityReducer } from './cityHooks';
+import { userReducer } from './userHooks';
 
 const initialStat: ManageState = {
   reports: {
@@ -155,6 +156,30 @@ const initialStat: ManageState = {
     pending: false,
     error: null,
   },
+
+  users: {
+    data: [],
+    pending: false,
+    error: null,
+    page: 0,
+    size: 0,
+    total: 0,
+  },
+  userDetail: {
+    data: null,
+    pending: false,
+    error: null,
+  },
+  createRestriction: {
+    data: null,
+    pending: false,
+    error: null,
+  },
+  removeRestriction: {
+    data: null,
+    pending: false,
+    error: null,
+  },
 };
 
 export const manageRootReducer = createReducer<ManageState, ActionBase>(
@@ -167,5 +192,6 @@ export const manageRootReducer = createReducer<ManageState, ActionBase>(
     ...postTopicReducer,
     ...petBreedReducer,
     ...cityReducer,
+    ...userReducer,
   },
 );

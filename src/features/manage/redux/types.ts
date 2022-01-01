@@ -172,6 +172,28 @@ export interface UpdateCityForm {
   name: string;
 }
 
+export interface User {
+  id: number;
+  name: string;
+  bio: string;
+  photo: string | null;
+}
+
+export interface UserDetail extends User {
+  restrictExpiration: number | null;
+}
+
+export interface Restriction {
+  id: number;
+  participatorId: number;
+  expiration: number;
+  reason: string;
+}
+
+export interface RestrictionForm {
+  participatorId: number;
+}
+
 export interface ManageState {
   reports: AsyncOffsetPageListBase<Report>;
   reportDetail: AsyncDataBase<ReportDetail>;
@@ -206,4 +228,9 @@ export interface ManageState {
   prefectures: AsyncListBase<Prefecture>;
   createCity: AsyncDataBase<City>;
   updateCity: AsyncDataBase<City>;
+
+  users: AsyncOffsetPageListBase<User>;
+  userDetail: AsyncDataBase<UserDetail>;
+  createRestriction: AsyncDataBase<Restriction>;
+  removeRestriction: AsyncDataBase<Restriction>;
 }

@@ -33,6 +33,12 @@ import {
   LoadPrefecturesActionType,
   CreateCityActionType,
   UpdateCityActionType,
+
+  // user
+  LoadUsersActionType,
+  LoadUserDetailActionType,
+  CreateRestrictionActionType,
+  RemoveRestrictionActionType,
 } from './actionTypes';
 
 const watchLoadReports = createSagaWatcher({
@@ -232,6 +238,38 @@ const watchUpdateCity = createSagaWatcher({
   watchType: 'EVERY',
 });
 
+// user
+const watchLoadUsers = createSagaWatcher({
+  url: `/api/admin/users`,
+  method: 'GET',
+  asyncAction: LoadUsersActionType,
+  watchType: 'LATEST',
+});
+const watchLoadUserDetail = createSagaWatcher({
+  createUrl: (payload) => {
+    let url = `/api/admin/users/${payload.userId}`;
+    return url;
+  },
+  method: 'GET',
+  asyncAction: LoadUserDetailActionType,
+  watchType: 'LATEST',
+});
+const watchCreateRestriction = createSagaWatcher({
+  url: `/api/admin/users/restricts`,
+  method: 'POST',
+  asyncAction: CreateRestrictionActionType,
+  watchType: 'EVERY',
+});
+const watchRemoveRestriction = createSagaWatcher({
+  createUrl: (payload) => {
+    let url = `/api/admin/users/${payload.userId}/restricts`;
+    return url;
+  },
+  method: 'DELETE',
+  asyncAction: RemoveRestrictionActionType,
+  watchType: 'EVERY',
+});
+
 export function* manageRootSaga() {
   yield all([
     fork(watchLoadReports),
@@ -266,5 +304,10 @@ export function* manageRootSaga() {
     fork(watchLoadPrefectures),
     fork(watchCreateCity),
     fork(watchUpdateCity),
+
+    fork(watchLoadUsers),
+    fork(watchLoadUserDetail),
+    fork(watchCreateRestriction),
+    fork(watchRemoveRestriction),
   ]);
 }

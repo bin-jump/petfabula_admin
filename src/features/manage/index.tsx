@@ -10,8 +10,10 @@ import {
   NumberOutlined,
   TagsOutlined,
   EnvironmentOutlined,
+  TeamOutlined,
 } from '@ant-design/icons';
 import { useCurrentUser, useLogout } from '../login/redux';
+import Users from './components/Users';
 import Reports from './components/Reports';
 import Feedbacks from './components/Feedbacks';
 import SystemNotifications from './components/SystemNotifications';
@@ -21,11 +23,13 @@ import PrivacyAgreement from './components/PrivacyAgreement';
 import PostTopics from './components/PostTopics';
 import PetBreeds from './components/PetBreeds';
 import Cities from './components/Cities';
+import UserDetailPage from './components/UserDetail';
 
 const { Header, Content, Sider } = Layout;
 
 const topPathes = new Set([
   '/manage',
+  '/manage/users',
   '/manage/feedbacks',
   '/manage/system-notifications',
   '/manage/user-agreement',
@@ -64,6 +68,9 @@ const Manage = () => {
                 }}
                 style={{ paddingTop: 60 }}
               >
+                <Menu.Item key="/manage/users" icon={<TeamOutlined />}>
+                  Users
+                </Menu.Item>
                 <Menu.Item key="/manage" icon={<ExclamationCircleOutlined />}>
                   Reports
                 </Menu.Item>
@@ -107,7 +114,7 @@ const Manage = () => {
                 style={{ background: '#fff' }}
                 onBack={
                   !topPathes.has(path)
-                    ? () => history.push('/manage')
+                    ? () => history.goBack() //() => history.push('/manage')
                     : undefined
                 }
                 title={`Hi, ${currentUser.name}`}
@@ -128,6 +135,13 @@ const Manage = () => {
               <div style={{ padding: '0 24px 24px' }}>
                 <Switch>
                   <Route exact={true} path="/manage" component={Reports} />
+                  <Route exact={true} path="/manage/users" component={Users} />
+                  <Route
+                    exact={true}
+                    path="/manage/users/:userId"
+                    component={UserDetailPage}
+                  />
+
                   <Route
                     exact={true}
                     path="/manage/report/:reportId"

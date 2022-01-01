@@ -80,3 +80,14 @@ export const LoadPrefecturesActionType = createAsyncActionType(
 );
 export const CreateCityActionType = createAsyncActionType('MANAGE_CREATE_CITY');
 export const UpdateCityActionType = createAsyncActionType('MANAGE_UPDATE_CITY');
+
+export const LoadUsersActionType = createAsyncActionType('MANAGE_LOAD_USERS');
+export const LoadUserDetailActionType = createAsyncActionType(
+  'MANAGE_LOAD_USER_DETAIL',
+);
+export const CreateRestrictionActionType = createAsyncActionType(
+  'MANAGE_CREATE_RESTRICTION',
+);
+export const RemoveRestrictionActionType = createAsyncActionType(
+  'MANAGE_REMOVE_RESTRICTION',
+);
