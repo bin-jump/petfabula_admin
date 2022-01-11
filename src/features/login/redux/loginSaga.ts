@@ -14,7 +14,7 @@ const watchGetCurrentUser = createSagaWatcher({
 });
 
 const watchLogin = createSagaWatcher({
-  url: `/api/identity/signin-email-password`,
+  url: `/api/auth/signin-email-password`,
   method: 'POST',
   asyncAction: PasswordLoginUserActionType,
   watchType: 'EVERY',

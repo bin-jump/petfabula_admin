@@ -96,12 +96,20 @@ const UserDetailPage = () => {
         title={userDetail?.id == userId ? `ID: ${userId}` : ''}
         loading={pending || userDetail?.id != userId}
       >
-        <Meta
-          avatar={<Avatar src={userDetail?.photo} icon={<UserOutlined />} />}
-          title={userDetail?.name}
-          description={userDetail?.bio}
-        />
-        <RestrictionPart userDetail={userDetail} />
+        {userDetail && !userDetail?.hasOwnProperty('name') ? (
+          <Text style={{ color: 'gray' }}>{'NOT FOUND'}</Text>
+        ) : (
+          <div>
+            <Meta
+              avatar={
+                <Avatar src={userDetail?.photo} icon={<UserOutlined />} />
+              }
+              title={userDetail?.name}
+              description={userDetail?.bio}
+            />
+            <RestrictionPart userDetail={userDetail} />
+          </div>
+        )}
       </Card>
     </div>
   );

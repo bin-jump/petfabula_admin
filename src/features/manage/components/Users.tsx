@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Tag, Space, Typography } from 'antd';
-import { Link } from 'react-router-dom';
+import { Table, Button, Input, Typography } from 'antd';
+import { Link, useHistory } from 'react-router-dom';
 import {
   User,
   UserDetail,
@@ -57,7 +57,9 @@ const columns = [
 ];
 
 const Users = () => {
+  const [userId, setUserId] = useState('');
   const { loadUsers, users, page, size, total, pending } = useLoadUsers();
+  const history = useHistory();
 
   useEffect(() => {
     if (!size) {
@@ -70,6 +72,30 @@ const Users = () => {
   return (
     <div style={{ padding: 20 }}>
       User
+      <Input.Group compact style={{ margin: '16px 0px' }}>
+        <Input
+          style={{ width: 200 }}
+          value={userId}
+          placeholder="user id"
+          onChange={(e) => {
+            const val = e.target.value;
+            let isnum = /^\d+$/.test(val);
+            if (!isnum && val.length > 0) {
+              return;
+            }
+            setUserId(val);
+          }}
+        />
+        <Button
+          type="primary"
+          onClick={() => {
+            let path = `/manage/users/${userId}`;
+            history.push(path);
+          }}
+        >
+          Find
+        </Button>
+      </Input.Group>
       <Table
         rowKey={(record) => record.id}
         columns={columns}
