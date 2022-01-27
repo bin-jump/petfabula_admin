@@ -8,6 +8,7 @@ import { postTopicReducer } from './topicHooks';
 import { petBreedReducer } from './petBreedHooks';
 import { cityReducer } from './cityHooks';
 import { userReducer } from './userHooks';
+import { testUserReducer } from './testUserHooks';
 
 const initialStat: ManageState = {
   reports: {
@@ -180,6 +181,22 @@ const initialStat: ManageState = {
     pending: false,
     error: null,
   },
+
+  testUsers: {
+    data: [],
+    pending: false,
+    error: null,
+  },
+  createTestUser: {
+    data: null,
+    pending: false,
+    error: null,
+  },
+  updateTestUserAuthInfo: {
+    data: null,
+    pending: false,
+    error: null,
+  },
 };
 
 export const manageRootReducer = createReducer<ManageState, ActionBase>(
@@ -193,5 +210,6 @@ export const manageRootReducer = createReducer<ManageState, ActionBase>(
     ...petBreedReducer,
     ...cityReducer,
     ...userReducer,
+    ...testUserReducer,
   },
 );

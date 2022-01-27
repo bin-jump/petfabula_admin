@@ -91,3 +91,13 @@ export const CreateRestrictionActionType = createAsyncActionType(
 export const RemoveRestrictionActionType = createAsyncActionType(
   'MANAGE_REMOVE_RESTRICTION',
 );
+
+export const LoadTestUsersActionType = createAsyncActionType(
+  'MANAGE_LOAD_TSET_USERS',
+);
+export const CreateTestUserActionType = createAsyncActionType(
+  'MANAGE_CREATE_TSET_USER',
+);
+export const UpdateTestUserAuthActionType = createAsyncActionType(
+  'MANAGE_UPDATE_TSET_USER_AUTH',
+);

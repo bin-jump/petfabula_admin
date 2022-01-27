@@ -9,3 +9,4 @@ export * from './topicHooks';
 export * from './petBreedHooks';
 export * from './cityHooks';
 export * from './userHooks';
+export * from './testUserHooks';

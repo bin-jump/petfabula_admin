@@ -39,6 +39,11 @@ import {
   LoadUserDetailActionType,
   CreateRestrictionActionType,
   RemoveRestrictionActionType,
+
+  //test user
+  LoadTestUsersActionType,
+  CreateTestUserActionType,
+  UpdateTestUserAuthActionType,
 } from './actionTypes';
 
 const watchLoadReports = createSagaWatcher({
@@ -270,6 +275,28 @@ const watchRemoveRestriction = createSagaWatcher({
   watchType: 'EVERY',
 });
 
+// test user
+const watchLoadTestUsers = createSagaWatcher({
+  url: `/api/admin/test-users`,
+  method: 'GET',
+  asyncAction: LoadTestUsersActionType,
+  watchType: 'LATEST',
+});
+
+const watchCreateTestUser = createSagaWatcher({
+  url: `/api/admin/test-user`,
+  method: 'POST',
+  asyncAction: CreateTestUserActionType,
+  watchType: 'EVERY',
+});
+
+const watchUpdateTestUserAuthInfo = createSagaWatcher({
+  url: `/api/admin/test-user-auth-info`,
+  method: 'PUT',
+  asyncAction: UpdateTestUserAuthActionType,
+  watchType: 'EVERY',
+});
+
 export function* manageRootSaga() {
   yield all([
     fork(watchLoadReports),
@@ -309,5 +336,9 @@ export function* manageRootSaga() {
     fork(watchLoadUserDetail),
     fork(watchCreateRestriction),
     fork(watchRemoveRestriction),
+
+    fork(watchLoadTestUsers),
+    fork(watchCreateTestUser),
+    fork(watchUpdateTestUserAuthInfo),
   ]);
 }

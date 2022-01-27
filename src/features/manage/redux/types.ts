@@ -183,6 +183,16 @@ export interface UserDetail extends User {
   restrictExpiration: number | null;
 }
 
+export interface TestUser {
+  id: number;
+  name: string;
+  bio: string;
+  photo: string | null;
+  email: string;
+  code: string;
+  active: boolean;
+}
+
 export interface Restriction {
   id: number;
   participatorId: number;
@@ -192,6 +202,18 @@ export interface Restriction {
 
 export interface RestrictionForm {
   participatorId: number;
+}
+
+export interface TestUserForm {
+  name: string;
+  email: string;
+  code: string;
+}
+
+export interface TestUserAuthForm {
+  id: number;
+  code: string;
+  active: boolean;
 }
 
 export interface ManageState {
@@ -233,4 +255,8 @@ export interface ManageState {
   userDetail: AsyncDataBase<UserDetail>;
   createRestriction: AsyncDataBase<Restriction>;
   removeRestriction: AsyncDataBase<Restriction>;
+
+  testUsers: AsyncListBase<TestUser>;
+  createTestUser: AsyncDataBase<TestUser>;
+  updateTestUserAuthInfo: AsyncDataBase<TestUser>;
 }

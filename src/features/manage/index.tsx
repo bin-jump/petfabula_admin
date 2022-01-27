@@ -24,6 +24,7 @@ import PostTopics from './components/PostTopics';
 import PetBreeds from './components/PetBreeds';
 import Cities from './components/Cities';
 import UserDetailPage from './components/UserDetail';
+import TestUsers from './components/TestUsers';
 
 const { Header, Content, Sider } = Layout;
 
@@ -37,6 +38,7 @@ const topPathes = new Set([
   '/manage/post-topics',
   '/manage/pet-breeds',
   '/manage/cities',
+  '/manage/test-users',
 ]);
 
 const Manage = () => {
@@ -68,6 +70,9 @@ const Manage = () => {
                 }}
                 style={{ paddingTop: 60 }}
               >
+                <Menu.Item key="/manage/test-users" icon={<TeamOutlined />}>
+                  Test Users
+                </Menu.Item>
                 <Menu.Item key="/manage/users" icon={<TeamOutlined />}>
                   Users
                 </Menu.Item>
@@ -140,6 +145,11 @@ const Manage = () => {
                     exact={true}
                     path="/manage/users/:userId"
                     component={UserDetailPage}
+                  />
+                  <Route
+                    exact={true}
+                    path="/manage/test-users"
+                    component={TestUsers}
                   />
 
                   <Route
