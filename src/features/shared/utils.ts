@@ -34,3 +34,20 @@ export const getTimeText = (mili: number) => {
 export const toFullTextDate = (mili: number) => {
   return `${toDateText(mili)} ${getTimeText(mili)}`;
 };
+
+type Size = 'LG' | 'MD' | 'SM';
+
+export const sizedUri = (uri: string, sz?: Size) => {
+  if (!uri) {
+    return uri;
+  }
+
+  if (!sz || uri.length <= 3) {
+    return uri;
+  }
+  if (uri.charAt(uri.length - 3) == '!') {
+    return uri;
+  }
+
+  return `${uri}!${sz.toLowerCase()}`;
+};

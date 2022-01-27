@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Divider, Card, Typography, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { sizedUri } from '../../shared';
 
 const { Title } = Typography;
 
@@ -14,7 +15,7 @@ const UserField = ({ user }: { user: User }) => {
   return (
     <div>
       <Avatar
-        src={user.photo}
+        src={sizedUri(user.photo)}
         size={42}
         style={{ float: 'left', marginRight: 8 }}
         icon={<UserOutlined />}

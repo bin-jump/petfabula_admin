@@ -19,7 +19,12 @@ import {
   useRemoveQestion,
   useRemoveAnswer,
 } from '../redux';
-import { UserField, useDidUpdateEffect, PendingModal } from '../../shared';
+import {
+  UserField,
+  useDidUpdateEffect,
+  PendingModal,
+  sizedUri,
+} from '../../shared';
 
 const { Title } = Typography;
 
@@ -41,7 +46,7 @@ const PostItem = ({ post }: { post: Post }) => {
             key={item.url}
             width={200}
             height={200}
-            src={item.url}
+            src={sizedUri(item.url, 'LG')}
             // fallback={fallback}
           />
         ))}
@@ -65,7 +70,7 @@ const QuestionItem = ({ question }: { question: Question }) => {
             key={item.url}
             width={200}
             height={200}
-            src={item.url}
+            src={sizedUri(item.url, 'LG')}
             // fallback={fallback}
           />
         ))}
@@ -88,7 +93,7 @@ const AnswerItem = ({ answer }: { answer: Answer }) => {
             key={item.url}
             width={200}
             height={200}
-            src={item.url}
+            src={sizedUri(item.url, 'LG')}
             // fallback={fallback}
           />
         ))}

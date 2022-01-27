@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Button, Avatar, Card, Typography } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-
 import {
   User,
   UserDetail,
@@ -11,7 +10,7 @@ import {
   useCreateRestriction,
   useRemoveRestriction,
 } from '../redux';
-import { toFullTextDate } from '../../shared';
+import { toFullTextDate, sizedUri, UserField } from '../../shared';
 
 const { Meta } = Card;
 const { Text, Link } = Typography;
@@ -102,7 +101,10 @@ const UserDetailPage = () => {
           <div>
             <Meta
               avatar={
-                <Avatar src={userDetail?.photo} icon={<UserOutlined />} />
+                <Avatar
+                  src={sizedUri(userDetail?.photo)}
+                  icon={<UserOutlined />}
+                />
               }
               title={userDetail?.name}
               description={userDetail?.bio}
