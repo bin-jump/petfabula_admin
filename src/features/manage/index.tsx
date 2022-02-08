@@ -126,6 +126,15 @@ const Manage = () => {
                 // subTitle="This is a subtitle"
                 extra={[
                   <Button
+                    key="setting"
+                    style={{ marginLeft: 16 }}
+                    onClick={() => {
+                      history.push('/setting');
+                    }}
+                  >
+                    Setting
+                  </Button>,
+                  <Button
                     key="logout"
                     style={{ marginLeft: 16 }}
                     onClick={() => {

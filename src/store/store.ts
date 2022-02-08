@@ -5,6 +5,7 @@ import { fork, all, spawn } from 'redux-saga/effects';
 import rootReducer from './rootReducer';
 import { loginRootSaga } from '../features/login/redux';
 import { manageRootSaga } from '../features/manage/redux';
+import { settingRootSaga } from '../features/setting/redux';
 import { logHandleMiddleware } from './logHandleMiddleware';
 import { toastHandleMiddleware } from './toastHandleMiddleware';
 
@@ -22,7 +23,7 @@ const store = createStore(
 );
 
 function* rootSaga() {
-  yield all([fork(loginRootSaga), fork(manageRootSaga)]);
+  yield all([fork(loginRootSaga), fork(manageRootSaga), fork(settingRootSaga)]);
 }
 
 sagaMiddleware.run(rootSaga);

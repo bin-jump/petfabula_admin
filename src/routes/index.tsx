@@ -2,6 +2,8 @@ import * as React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from '../features/login';
 import Manage from '../features/manage';
+import Setting from '../features/setting';
+
 import { useCurrentUser } from '../features/login/redux';
 
 export const Routes = () => {
@@ -17,6 +19,7 @@ export const Routes = () => {
         <Route exact={true} path="/Login" component={Login} />
         <Route exact={true} path="/" component={Login} />
         <Route path="/manage" component={Manage} />
+        <Route path="/setting" component={Setting} />
       </Switch>
     </BrowserRouter>
   );
